@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'bank'
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'NAME': 'piggybank',
         'USER': 'jerome',
         'PASSWORD': 'password',
-        'HOST': 'localhost',
+        'HOST': 'tirelire-db',
         'PORT': '5432',
     }
 }
