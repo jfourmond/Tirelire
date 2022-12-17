@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: piggybank
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: jerome
+    ports:
+      - "5432:5432"
+    container_name: tirelire-db

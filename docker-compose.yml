@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: piggybank
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: jerome
+    container_name: tirelire-db
+
+  migrate:
+    image: jfourmond/piggy_bank:latest
+    build:
+      context: .
+    restart: on-failure
+    entrypoint: /bin/sh
+    command: -c "dockerize -wait tcp://tirelire-db:5432 -timeout 900s -wait-retry-interval 5s python manage.py migrate"
+    container_name: tirelire-migrate
+
+  django:
+    image: jfourmond/piggy_bank:latest
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    restart: always
+    entrypoint: /bin/sh
+    command: -c "dockerize -wait tcp://tirelire-db:5432 -timeout 900s -wait-retry-interval 10s python manage.py runserver 0.0.0.0:8000"
+    container_name: tirelire
