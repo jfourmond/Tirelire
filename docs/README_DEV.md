@@ -22,25 +22,32 @@ A utilisateur unique, les options d'administration, de création d'utilisateur o
 - Python 3.10
 - Postgresql
 
-## Installation
+### Ubuntu
 
-Pour le déploiement passer au titre suivant.
+1. Création de l'environnement virtuel python :
+    - `python -m venv env`
+2. Activation de l'environnement :
+    - `source env/bin/activate`
+3. Installation des paquets python :
+    - `pip install -r requirements.txt`
 
-Pour le développement local, consulter le document [README_DEV.md]
+### Base de données
 
-À la racine du projet, après clonage :
+### Database - Postgresql
 
-### Déploiement
+Exécution de la base de données via Docker :
+   - `docker compose -f docker-compose.yml up`
 
+## Exécution
 
-1. Construire les images docker :
-    - `docker compose build`
-2. Créer les containers et les dépendances :
-    - `docker compose up`
+Vous souhaitez développer ? Travailler en local ? Spécifier la variable d'environnement DJANGO_SETTINGS_MODULE avec 
+les options locales :
+   - `export DJANGO_SETTINGS_MODULE=piggy_bank.settings_local`
 
-Le `docker-compose.yml` construit et lance trois containers :
-   1. `tirelire-db` lance le container de base de données sous Postgresql, vide
-   2. `tirelire-migrate` effectue la création des tables et la ou les migrations nécessaires
-   3. `tirelire` lance le container django
+### Migration 
 
-Aucun `nginx` n'est utilisé ici.
+> `python manage.py migrate`
+
+### App - Django
+
+> `python manage.py runserver`
