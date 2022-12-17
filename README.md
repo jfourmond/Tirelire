@@ -26,7 +26,7 @@ L'idée ici est de simuler l'utilisation d'une tirelire.
 
 Pour le déploiement passer au titre suivant.
 
-Pour le développement local, consulter le document [README_DEV.md]
+Pour le développement local, consulter le document [README_DEV.md](./docs/README_DEV.md)
 
 À la racine du projet, après clonage :
 
